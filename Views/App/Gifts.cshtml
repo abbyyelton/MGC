@@ -1,0 +1,84 @@
+﻿@model IEnumerable<MyGiftCloset.Entities.Gift>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+<h1>Gifts in My Closet</h1>
+
+
+<div class="container">
+    <div class="col-md-12">
+        <table class="table">
+            <thead>
+                <tr class="row gift-header">
+                    <th>Gift</th>
+                    <th class="hidden-xs">Store/Link</th>
+                    <th>Recipient</th>
+                    <th class="hidden-xs">Holiday </th>
+                    <th>Price</th>
+                    <th class="hidden-xs">Purchased</th>
+                    <th class="hidden-xs">Wrapped</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var gift in Model)
+            {
+                <tr class="item row">
+                    <td class="col-md-2">
+                        <label ng-hide="editing" ng-click="editing=true">@gift.Name</label>         
+                    </td>
+                    <td class="col-md-2">
+                        <label ng-hide="editing" ng-click="editing=true">@gift.StoreLink</label>
+                    </td>
+                    <td class="col-md-2">
+                        <label ng-hide="editing" ng-click="editing=true">@gift.Recipient.Name</label>
+                    </td>
+                    <td class="col-md-2">
+                        <label ng-hide="editing" ng-click="editing=true">@gift.Holiday.Name</label>
+                    </td>
+                    <td class="col-md-2">
+                        <label ng-hide="editing" ng-click="editing=true">$@gift.Price</label>
+                    </td>
+                    <td class="col-md-1 hidden-xs"><input type="checkbox" ng-model="@gift.Purchased" ng-click="editing=true" ng-change="gift.edited = true" ng-blur="editing = false" /></td>
+                    <td class="col-md-1 hidden-xs"><input type="checkbox" ng-model="@gift.Wrapped" ng-click="editing=true" ng-change="gift.edited = true" ng-blur="editing = false" /></td>
+                    <td class="col-md-2">
+                        <div class="actions">
+                            <a href="" class="save" ng-click="saveGifts()">Save</a><a href="" class="delete" ng-click="deleteGift(gift, $index)">Delete</a>
+                        </div>
+                    </td>
+                </tr>
+
+            }               
+                @*<tr class="item row" ng-class="{'editing-item': editing, 'edited': gift.edited}" ng-repeat="gift in @Model | orderBy: 'wrapped' ">
+                    <td class="col-md-2">
+                        <label ng-hide="editing" ng-click="editing=true">{{gift.Name}}</label>
+                        <input ng-show="editing" ng-blur="editing = false" class="editing-label" type="text" ng-model="gift.Name" ng-change="gift.edited = true" />
+                    </td>
+                    <td class="col-md-2 hidden-xs">
+                        <label ng-hide="editing" ng-click="editing=true">{{gift.storeLink}}</label>
+                        <input ng-show="editing" ng-blur="editing = false" class="editing-label" type="text" ng-model="gift.storeLink" ng-change="gift.edited = true" />
+                    </td>
+                    <td class="col-md-2">
+                        <label ng-hide="editing" ng-click="editing=true">{{gift.Recipient.Name}}</label>
+                        <input ng-show="editing" ng-blur="editing = false" class="editing-label" type="text" ng-model="gift.recipient" ng-change="gift.edited = true" />
+                    </td>
+                    <td class="col-md-1 hidden-xs">
+                        <label ng-hide="editing" ng-click="editing=true">{{gift.Holiday.Name}}</label>
+                        <input ng-show="editing" ng-blur="editing = false" class="editing-label" type="text" ng-model="gift.holiday" ng-change="gift.edited = true" />
+                    </td>
+                    <td class="col-md-1">
+                        <label ng-hide="editing" ng-click="editing=true">{{gift.Price}}</label>
+                        <input ng-show="editing" ng-blur="editing = false" class="editing-label" type="text" ng-model="gift.price" ng-change="gift.edited = true" />
+                    </td>
+                    <td class="col-md-1 hidden-xs"><input type="checkbox" ng-model="gift.purchased" ng-click="editing=true" ng-change="gift.edited = true" ng-blur="editing = false" /></td>
+                    <td class="col-md-1 hidden-xs"><input type="checkbox" ng-model="gift.wrapped" ng-click="editing=true" ng-change="gift.edited = true" ng-blur="editing = false" /></td>
+                    <td class="col-md-2">
+                        <div class="actions">
+                            <a href="" class="save" ng-click="saveGifts()">Save</a><a href="" class="delete" ng-click="deleteGift(gift, $index)">Delete</a>
+                        </div>
+                    </td>
+                </tr>*@
+            </tbody>
+        </table><ul class="pager"><li><a href="#">←  Prev</a></li><li><a href="#">Next  →</a></li></ul>
+    </div>
+</div>
