@@ -1,0 +1,5 @@
+﻿{
+  "ConnectionStrings": {
+    "MGCContextConnection": "Server=(localdb)\\MSSQLLocalDb;Database=MGCDb;Trusted_Connection=true;MultipleActiveResultSets=true;"
+  }
+}

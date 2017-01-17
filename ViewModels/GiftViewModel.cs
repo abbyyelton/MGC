@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MGC.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -18,8 +19,8 @@ namespace MGC.ViewModels
         [StringLength(200)]
         public string StoreLink { get; set; }
 
-        //   public Recipient Recipient { get; set; }
-        //   public Holiday Holiday { get; set; }
+        public string RecipientName { get; set; }
+        public string HolidayName { get; set; }
         public string Notes { get; set; }
         public bool Purchased { get; set; }
         public bool Wrapped { get; set; }
