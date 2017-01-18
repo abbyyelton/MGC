@@ -23,7 +23,7 @@ textarea {
     max-width: 280px;
 }
 
-.gift-header {
+.list-header {
     color: #009871;
 }
 
@@ -31,3 +31,52 @@ textarea {
     position: fixed;
     bottom: 0;
 }*/
+
+.bottom-menu-bar {
+    position: fixed;
+    bottom: 50px;
+}
+
+
+.bottom-menu-item a, 
+.bottom-menu-item a:visited, 
+.bottom-menu-item a:link, 
+.bottom-menu-item a:active {
+    text-decoration: none;
+}
+
+.bottom-menu-item a:hover, 
+.bottom-menu-item a:focus {
+     background-color: #217dbb;
+}
+
+.add-item {
+    float: right;
+    padding-right: 40px;
+}
+
+.add-item a,
+.add-item a:visited,
+.add-item a:link,
+.add-item a:active {
+    text-decoration: none;
+}
+
+.add-item a:hover,
+.add-item a:focus {
+    color:#217dbb;
+}
+
+.delete{
+    color: #871f1f;
+}
+
+.delete:hover, 
+.delete:focus{
+    color: #f23737;
+}
+
+.save:hover,
+.save:focus {
+    color:#217dbb;
+}

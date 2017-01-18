@@ -29,7 +29,7 @@ namespace MGC.Controllers.Web
         [Authorize]
         public IActionResult Gifts()
         {
-            var gifts = _repository.GetAllGifts(this.User.Identity.Name);
+            var gifts = _repository.GetAllGifts(User.Identity.Name);
             return View(gifts);
         }
 
@@ -43,7 +43,21 @@ namespace MGC.Controllers.Web
             return View();
         }
 
+        [Authorize]
         public IActionResult AddGift()
+        {
+            return View();
+        }
+
+        [Authorize]
+        public IActionResult Recipients()
+        {
+            var recipients = _repository.GetAllRecipients(User.Identity.Name);
+            return View(recipients);
+        }
+
+        [Authorize]
+        public IActionResult AddRecipient()
         {
             return View();
         }

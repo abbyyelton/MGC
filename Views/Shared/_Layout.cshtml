@@ -4,8 +4,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Gift Closet - @ViewBag.Title</title>
+    <link href="~/img/favicon.ico" rel="shortcut icon icon" type="image/x-icon"/>
     <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/lib/bootswatch/darkly/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/lib/Font-Awesome/css/font-awesome.min.css" rel="stylesheet" />
     <link href="~/css/Site.css" rel="stylesheet" />
     @*@Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -24,36 +26,41 @@
                     <li><a asp-controller="App" asp-action="About">About</a></li>
                     <li><a asp-controller="App" asp-action="Contact">Contact</a></li>
                 </ul>
-      @*          @Html.Partial("_LoginPartial")*@
             </div>
         </div>
     </div>
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <div class="container">
+        
+        <div class="container bottom-menu-bar">
+            <hr />
             <div class="row">
-                <div class="col-md-12">
-                    <h1 class="text-center">What's next?</h1>
+                <div class="col-md-3 bottom-menu-item">
+                    <a asp-controller="App" asp-action="AddGift">
+                        <img src="~/img/present.png" class="center-block img-circle img-responsive" width="75" height="75">
+                        <h4 class="text-center">Add a gift</h4>
+                    </a>
+                </div>
+                <div class="col-md-3 bottom-menu-item">
+                    <a asp-controller="App" asp-action="Gifts">
+                        <img src="~/img/gifts-multiple.jpg" class="center-block img-circle img-responsive" width="75" height="75">
+                        <h4 class="text-center">Check your closet</h4>
+                    </a>
+                </div>
+                <div class="col-md-3 bottom-menu-item">
+                    <a asp-controller="App" asp-action="AddRecipient">
+                        <img src="~/img/person-new.png" class="center-block img-circle img-responsive" width="75" height="75">
+                        <h4 class="text-center">Add a new recipient</h4>
+                    </a>
+                </div>
+                <div class="col-md-3 bottom-menu-item">
+                    <a asp-controller="App" asp-action="Recipients">
+                        <img src="~/img/family.png" class="center-block img-circle img-responsive" width="75" height="75">
+                        <h4 class="text-center">View recipients</h4>
+                    </a>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <img src="~/img/gifts-multiple.jpg" class="center-block img-circle img-responsive" width="150" height="150">
-                    <h3 class="text-center">Check your closet</h3>
-                    <p class="text-center">View the gifts you have stored.</p>
-                </div>
-                <div class="col-md-4">
-                    <img src="~/img/person-new.png" class="center-block img-circle img-responsive" width="150" height="150">
-                    <h3 class="text-center">Add a new recipient</h3>
-                    <p class="text-center">Someone else to buy for? Add them here!</p>
-                </div>
-                <div class="col-md-4">
-                    <img src="~/img/family.png" class="center-block img-circle img-responsive" width="150" height="150">
-                    <h3 class="text-center">View a recipient</h3>
-                    <p class="text-center">See if you've bought that Christmas gift yet.</p>
-                </div>
-            </div>
+            <hr />
         </div>
     </div>
         <div id="footer">
@@ -64,6 +71,7 @@
     
     <script src="~/lib/jquery/dist/jquery.min.js"></script>  
     <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/lib/angular/angular.min.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

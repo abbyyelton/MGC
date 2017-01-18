@@ -17,8 +17,10 @@ namespace MGC.Models
 
         public IEnumerable<Gift> GetAllGifts(string userName)
         {
+            var giftUser = _getUser(userName);
+
             return _context.Gifts
-                .Where(g => g.UserName == userName)
+                .Where(g => g.GiftUser == giftUser)
                 .Include(h => h.Holiday)
                 .Include(r => r.Recipient)
                 .ToList();
@@ -38,10 +40,9 @@ namespace MGC.Models
             _context.Gifts.Add(gift);
         }
 
-        public void DeleteGift(int Id)
+        public void DeleteGift(Gift gift)
         {
-            var gift = GetGift(Id);
-            if ( gift != null)
+            if (gift != null)
             {
                 _context.Gifts.Remove(gift);
             }
@@ -61,9 +62,61 @@ namespace MGC.Models
             
         }
 
+        public Holiday GetHolidayByName(string holidayName)
+        {
+            return _context.Holidays
+                .Where(h => h.Name == holidayName)
+                .FirstOrDefault();
+        }
+
+        public Recipient GetRecipientByName(string recipientName)
+        {
+            return _context.Recipients
+                .Where(r => r.Name == recipientName)
+                .FirstOrDefault();
+        }
+
+        public GiftUser GetGiftUserByName(string userName)
+        {
+            return _context.GiftUsers
+                .Where(gu => gu.UserName == userName)
+                .FirstOrDefault();
+        }
+
+        public IEnumerable<Holiday> GetAllHolidays()
+        {
+            return _context.Holidays.ToList();
+        }
+
+        public void AddHoliday(Holiday newHoliday)
+        {
+            _context.Holidays.Add(newHoliday);
+        }
+
+        public IEnumerable<Recipient> GetAllRecipients(string userName)
+        {
+            var giftUser = _getUser(userName);
+
+            return _context.Recipients
+                .Where(r=> r.GiftUser == giftUser)
+                .ToList();
+        }
+
+        public void AddRecipient(Recipient newRecipient)
+        {
+            _context.Recipients.Add(newRecipient);
+        }
+
         public async Task<bool> SaveChangesAsync()
         {
             return (await _context.SaveChangesAsync()) > 0;
+        }
+
+        private GiftUser _getUser(string userName)
+        {
+            return _context.GiftUsers
+                .Where(gu => gu.UserName == userName)
+                .FirstOrDefault();
         }
     }
 }

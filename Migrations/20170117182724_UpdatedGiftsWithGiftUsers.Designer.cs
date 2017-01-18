@@ -8,9 +8,10 @@ using MGC.Models;
 namespace MGC.Migrations
 {
     [DbContext(typeof(MyGiftClosetContext))]
-    partial class MyGiftClosetContextModelSnapshot : ModelSnapshot
+    [Migration("20170117182724_UpdatedGiftsWithGiftUsers")]
+    partial class UpdatedGiftsWithGiftUsers
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.1")
@@ -29,8 +30,7 @@ namespace MGC.Migrations
 
                     b.Property<string>("Notes");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(7,2)");
+                    b.Property<decimal>("Price");
 
                     b.Property<bool>("Purchased");
 
@@ -113,9 +113,6 @@ namespace MGC.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Name")
-                        .IsUnique();
-
                     b.ToTable("Holidays");
                 });
 
@@ -126,18 +123,9 @@ namespace MGC.Migrations
 
                     b.Property<DateTime?>("Birthday");
 
-                    b.Property<string>("Email");
-
-                    b.Property<string>("GiftUserId");
-
                     b.Property<string>("Name");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("GiftUserId");
-
-                    b.HasIndex("Name")
-                        .IsUnique();
 
                     b.ToTable("Recipients");
                 });
@@ -262,13 +250,6 @@ namespace MGC.Migrations
                     b.HasOne("MGC.Models.Recipient", "Recipient")
                         .WithMany()
                         .HasForeignKey("RecipientId");
-                });
-
-            modelBuilder.Entity("MGC.Models.Recipient", b =>
-                {
-                    b.HasOne("MGC.Models.GiftUser", "GiftUser")
-                        .WithMany()
-                        .HasForeignKey("GiftUserId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>

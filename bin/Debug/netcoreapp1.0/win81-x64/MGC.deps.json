@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v1.0/win81-x64",
-    "signature": "57b74562ceb9d8ee58e97e7058ca847620dd6147"
+    "signature": "b9baf50383a88ea4a4607485b62f5630c751ac14"
   },
   "compilationOptions": {
     "defines": [
@@ -29,7 +29,8 @@
           "Microsoft.NETCore.App": "1.0.1",
           "Microsoft.Extensions.Logging.Debug": "1.0.0",
           "AutoMapper": "4.2.1",
-          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "1.0.0"
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "1.0.0",
+          "FontAwesome": "4.7.0"
         },
         "compile": {
           "MGC.dll": {}
@@ -65,6 +66,7 @@
           "lib/dotnet5.1/AutoMapper.dll": {}
         }
       },
+      "FontAwesome/4.7.0": {},
       "Libuv/1.9.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.0.1"
@@ -3211,7 +3213,8 @@
           "Microsoft.NETCore.App": "1.0.1",
           "Microsoft.Extensions.Logging.Debug": "1.0.0",
           "AutoMapper": "4.2.1",
-          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "1.0.0"
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "1.0.0",
+          "FontAwesome": "4.7.0"
         },
         "runtime": {
           "MGC.dll": {}
@@ -3247,6 +3250,7 @@
           "lib/dotnet5.1/AutoMapper.dll": {}
         }
       },
+      "FontAwesome/4.7.0": {},
       "Libuv/1.9.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.0.1"
@@ -6495,6 +6499,11 @@
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-BxAMt0Sl9dQIPPualuMv6IhJ5QrWmWSgyYZ/QxcQcR2IBu57/CXG5IP+73sFIr4FMNtcrUugWnuOWkYnlrLVWQ=="
+    },
+    "FontAwesome/4.7.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-n4H/brfszElyoZ4kmGh8E75uqvLzLvFr3h2PFVdPH1LwUmWIpeqdaW2pcC4oZAhg7sESyObh0IZpAI8COCNeUg=="
     },
     "Libuv/1.9.0": {
       "type": "package",

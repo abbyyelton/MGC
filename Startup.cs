@@ -12,6 +12,7 @@ using MGC.Models;
 using AutoMapper;
 using MGC.ViewModels;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace MGC
 {
@@ -46,7 +47,21 @@ namespace MGC
                 config.User.RequireUniqueEmail = true;
                 config.Password.RequiredLength = 8;
                 config.Cookies.ApplicationCookie.LoginPath = "/Auth/Login";
-
+                config.Cookies.ApplicationCookie.Events = new CookieAuthenticationEvents()
+                {
+                    OnRedirectToLogin = async ctx =>
+                    {
+                        if (ctx.Request.Path.StartsWithSegments("/api") && ctx.Response.StatusCode == 200)
+                        {
+                            ctx.Response.StatusCode = 401;
+                        }
+                        else
+                        {
+                            ctx.Response.Redirect(ctx.RedirectUri);
+                        }
+                        await Task.Yield();
+                    }
+                };
             })
             .AddEntityFrameworkStores<MyGiftClosetContext>();
         }
@@ -72,6 +87,9 @@ namespace MGC
                    .ForMember(dest => dest.HolidayName, opt => opt.MapFrom(src => src.Holiday.Name))
                    .ForMember(dest => dest.RecipientName, opt => opt.MapFrom(src => src.Recipient.Name));
 
+                config.CreateMap<Holiday, HolidayViewModel>().ReverseMap();
+
+                config.CreateMap<Recipient, RecipientViewModel>().ReverseMap();
 
             });
 

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MGC.Models;
 using MGC.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -13,6 +14,7 @@ namespace MGC.Controllers.Api
 {
 
     [Route("api/gifts")]
+    [Authorize]
     public class GiftsController : Controller
     {
         private ILogger<GiftsController> _logger;
@@ -29,7 +31,7 @@ namespace MGC.Controllers.Api
         {
             try
             {
-                var results = _repository.GetAllGifts(this.User.Identity.Name);
+                var results = _repository.GetAllGifts(User.Identity.Name);
                 return Ok(Mapper.Map<IEnumerable<GiftViewModel>>(results));
             }
             catch (Exception ex)
@@ -47,19 +49,10 @@ namespace MGC.Controllers.Api
                 try
                 {
                     var newGift = Mapper.Map<Gift>(theGift);
-                    newGift.Holiday = new Holiday()
-                    {
-                        Name = theGift.HolidayName
-                    };
-                    newGift.Recipient = new Recipient()
-                    {
-                        Name = theGift.RecipientName
-                    };  
-                   
-               
-
-                   // newGift.UserName = User.Identity.Name;
-
+                    newGift.Holiday = _repository.GetHolidayByName(theGift.HolidayName);
+                    newGift.Recipient = _repository.GetRecipientByName(theGift.RecipientName);
+                    newGift.GiftUser = _repository.GetGiftUserByName(User.Identity.Name);
+                    
                     _repository.AddGift(newGift);
 
                     if (await _repository.SaveChangesAsync())
@@ -81,37 +74,37 @@ namespace MGC.Controllers.Api
             return BadRequest(ModelState);
         }
 
-       // [HttpDelete("")]
-        //public async Task<IActionResult> Delete([FromBody]GiftViewModel theGift)
-        //{
-            //if (ModelState.IsValid)
-            //{
-            //    try
-            //    {
-            //        var newGift = Mapper.Map<Gift>(theGift);
-                   
-            //        // newGift.UserName = User.Identity.Name;
+        [HttpDelete("")]
+        public async Task<IActionResult> Delete([FromBody]GiftViewModel theGift)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    var newGift = Mapper.Map<Gift>(theGift);
 
-            //        _repository.DeleteGift(newGift.Id);
+                    newGift.GiftUser = _repository.GetGiftUserByName(User.Identity.Name);
 
-            //        if (await _repository.SaveChangesAsync())
-            //        {
-            //            return Created($"api/gifts/{theGift.Name}", Mapper.Map<GiftViewModel>(newGift));
-            //        }
-            //        else
-            //        {
-            //            _logger.LogError("Failed to save changes to the database");
-            //            return BadRequest("Failed to save changes to the database");
-            //        }
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        _logger.LogError($"Failed to create new gift: {ex}");
-            //        return BadRequest($"Failed to create new gift: {ex}");
-            //    }
-            //}
-            //return BadRequest(ModelState);
-       // }
+                    _repository.DeleteGift(newGift);
+
+                    if (await _repository.SaveChangesAsync())
+                    {
+                        return Created($"api/gifts/{theGift.Name}", Mapper.Map<GiftViewModel>(newGift));
+                    }
+                    else
+                    {
+                        _logger.LogError("Failed to save changes to the database");
+                        return BadRequest("Failed to save changes to the database");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError($"Failed to delete gift: {ex}");
+                    return BadRequest($"Failed to delete gift: {ex}");
+                }
+            }
+            return BadRequest(ModelState);
+        }
     }
 
 

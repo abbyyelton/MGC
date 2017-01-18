@@ -1,0 +1,42 @@
+﻿@model IEnumerable<MGC.Models.Recipient>
+@{
+    ViewBag.Title = "Recipients Page";
+}
+<h2>Recipients</h2>
+<div class="container">
+    <div class="col-md-12">
+        <div class="add-item">
+            <a asp-controller="App" asp-action="AddRecipient"><i class="fa fa-plus-square"></i> Add New</a>
+        </div>
+        <table class="table table-responsive table-striped">
+            <thead>
+                <tr class="row list-header">
+                    <th>Name</th>
+                    <th>Birthday</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="item row">
+                        <td class="col-md-3">
+                            <label ng-hide="editing" ng-click="editing=true">@item.Name</label>
+                        </td>
+                        <td class="col-md-3">
+                            <label ng-hide="editing" ng-click="editing=true">@item.Birthday.Value.ToString("M")</label>
+                        </td>
+                        <td class="col-md-3">
+                            <label ng-hide="editing" ng-click="editing=true">@item.Email</label>
+                        </td>
+                        <td class="col-md-2">
+                            <div class="actions">
+                                <a href="" class="save" ng-click="saveGifts()"><i class="fa fa-save"></i></a>&nbsp;&nbsp;&nbsp;<a href="" class="delete" ng-click="deleteGift(gift, $index)"><i class="fa fa-trash"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+       </table>
+    </div>
+</div>

@@ -8,9 +8,10 @@ using MGC.Models;
 namespace MGC.Migrations
 {
     [DbContext(typeof(MyGiftClosetContext))]
-    partial class MyGiftClosetContextModelSnapshot : ModelSnapshot
+    [Migration("20170118160201_AddedRecipientEmail")]
+    partial class AddedRecipientEmail
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.1")

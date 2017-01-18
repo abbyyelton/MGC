@@ -29,18 +29,30 @@ namespace MGC.Models
         public DbSet<Gift> Gifts { get; set; }
         public DbSet<Holiday> Holidays { get; set; }
         public DbSet<Recipient> Recipients { get; set; }
+        public DbSet<GiftUser> GiftUsers { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Holiday>()
+                .HasIndex(h => h.Name)
+                .IsUnique();
+
+            modelBuilder.Entity<Recipient>()
+                .HasIndex(r => r.Name)
+                .IsUnique();
+
+            modelBuilder.Entity<Gift>()
+                .Property(g => g.Price)
+                .HasColumnType("decimal(7,2)");
+       //         .IsRequired(false);
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
             optionsBuilder.UseSqlServer(_config["ConnectionStrings:MGCContextConnection"]);
-           // optionsBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-            //modelBuilder.Conventions.Remove<DecimalPropertyConvention>();
-            //modelBuilder.Conventions.Add(new DecimalPropertyConvention(7, 2));
-
-            //optionsBuilder.Entity<Gift>()
-            //    .Property(g => g.Price)
-            //    .HasPrecision(7, 2);
         }
 
     }

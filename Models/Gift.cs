@@ -8,7 +8,7 @@ namespace MGC.Models
     public class Gift
     {
         public int Id { get; set; }
-        public string UserName { get; set; }
+        public GiftUser GiftUser { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
         public string StoreLink { get; set; }

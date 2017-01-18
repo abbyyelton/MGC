@@ -210,6 +210,8 @@ C:\Users\AbbyYelton\Source\Repos\MGC\Program.cs
 C:\Users\AbbyYelton\Source\Repos\MGC\Startup.cs
 C:\Users\AbbyYelton\Source\Repos\MGC\Controllers\AuthController.cs
 C:\Users\AbbyYelton\Source\Repos\MGC\Controllers\Api\GiftsController.cs
+C:\Users\AbbyYelton\Source\Repos\MGC\Controllers\Api\HolidaysController.cs
+C:\Users\AbbyYelton\Source\Repos\MGC\Controllers\Api\RecipientsController.cs
 C:\Users\AbbyYelton\Source\Repos\MGC\Controllers\Web\AppController.cs
 C:\Users\AbbyYelton\Source\Repos\MGC\Migrations\20170112192356_InitialDatabase.cs
 C:\Users\AbbyYelton\Source\Repos\MGC\Migrations\20170112192356_InitialDatabase.Designer.cs
@@ -217,6 +219,14 @@ C:\Users\AbbyYelton\Source\Repos\MGC\Migrations\20170117154509_UpdatedGiftUser.c
 C:\Users\AbbyYelton\Source\Repos\MGC\Migrations\20170117154509_UpdatedGiftUser.Designer.cs
 C:\Users\AbbyYelton\Source\Repos\MGC\Migrations\20170117155522_UpdatedGifts.cs
 C:\Users\AbbyYelton\Source\Repos\MGC\Migrations\20170117155522_UpdatedGifts.Designer.cs
+C:\Users\AbbyYelton\Source\Repos\MGC\Migrations\20170117182724_UpdatedGiftsWithGiftUsers.cs
+C:\Users\AbbyYelton\Source\Repos\MGC\Migrations\20170117182724_UpdatedGiftsWithGiftUsers.Designer.cs
+C:\Users\AbbyYelton\Source\Repos\MGC\Migrations\20170117205936_SetUniqueFields.cs
+C:\Users\AbbyYelton\Source\Repos\MGC\Migrations\20170117205936_SetUniqueFields.Designer.cs
+C:\Users\AbbyYelton\Source\Repos\MGC\Migrations\20170118140127_UpdatedRecipient.cs
+C:\Users\AbbyYelton\Source\Repos\MGC\Migrations\20170118140127_UpdatedRecipient.Designer.cs
+C:\Users\AbbyYelton\Source\Repos\MGC\Migrations\20170118160201_AddedRecipientEmail.cs
+C:\Users\AbbyYelton\Source\Repos\MGC\Migrations\20170118160201_AddedRecipientEmail.Designer.cs
 C:\Users\AbbyYelton\Source\Repos\MGC\Migrations\MyGiftClosetContextModelSnapshot.cs
 C:\Users\AbbyYelton\Source\Repos\MGC\Models\DataRepository.cs
 C:\Users\AbbyYelton\Source\Repos\MGC\Models\Gift.cs
@@ -229,5 +239,4 @@ C:\Users\AbbyYelton\Source\Repos\MGC\Models\Recipient.cs
 C:\Users\AbbyYelton\Source\Repos\MGC\ViewModels\GiftViewModel.cs
 C:\Users\AbbyYelton\Source\Repos\MGC\ViewModels\HolidayViewModel.cs
 C:\Users\AbbyYelton\Source\Repos\MGC\ViewModels\LoginViewModel.cs
-C:\Users\AbbyYelton\Source\Repos\MGC\ViewModels\PostGiftViewModel.cs
 C:\Users\AbbyYelton\Source\Repos\MGC\ViewModels\RecipientViewModel.cs

@@ -10,9 +10,11 @@ namespace MGC.ViewModels
 {
     public class GiftViewModel
     {
+        public int Id { get; set; }
         [Required]
         [StringLength(100)]
         public string Name { get; set; }
+        //public string UserName { get; set; }
 
         public decimal Price { get; set; }
 
