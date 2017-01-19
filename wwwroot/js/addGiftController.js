@@ -2,17 +2,16 @@
     "use strict";
 
     angular.module("app-gifts")
-        .controller("giftsController", giftsController);
+        .controller("addGiftController", addGiftController);
 
-    function giftsController($http) {
+    function addGiftController($http) {
         var vm = this;
-        vm.gifts = [];
+        vm.newGift = {};
         vm.holidays = [];
         vm.recipients = [];
         vm.errorMessage = "";
         vm.isBusy = true;
-        vm.editing = false;
-        
+
         $http.get("/api/holidays")
             .then(function (response) {
                 angular.copy(response.data, vm.holidays);
@@ -37,39 +36,21 @@
 
            });
 
-        $http.get("/api/gifts")
-            .then(function (response) {
-                angular.copy(response.data, vm.gifts);
-            },
-            function(error) {
-                vm.errorMessage = "Failed to load gifts " + error;
-            })
-            .finally(function () {
-                vm.isBusy = false;
-            });
-
-       
-        vm.deleteGift = function(gift, index)
-        {
+        vm.addGift = function () {
             vm.isBusy = true;
-
-            $http.delete("/api/gifts", { data: gift, headers: { 'Content-Type': 'application/json' } })
+            var newGifts = [vm.newGift];
+            $http.post("/api/gifts", newGifts)
             .then(function (response) {
-                vm.gifts.splice(index, 1);
+                vm.newGift = {};
             },
             function (error) {
-                vm.errorMessage = "Failed to delete gift";
+                vm.errorMessage = "Failed to add gift";
             })
             .finally(function () {
                 vm.isBusy = false;
             });
         }
 
-        vm.saveGifts = function()
-        {
-            vm.isBusy = true;
-            
-        }
     }
 
 })();

@@ -4,74 +4,75 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Gift Closet - @ViewBag.Title</title>
-    <link href="~/img/favicon.ico" rel="shortcut icon icon" type="image/x-icon"/>
+    <link href="~/img/favicon.ico" rel="shortcut icon icon" type="image/x-icon" />
     <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/lib/bootswatch/darkly/bootstrap.min.css" rel="stylesheet" />
     <link href="~/lib/Font-Awesome/css/font-awesome.min.css" rel="stylesheet" />
     <link href="~/css/Site.css" rel="stylesheet" />
     @*@Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-    @Scripts.Render("~/bundles/angular")
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)*@
+        @Scripts.Render("~/bundles/modernizr")
+        @Scripts.Render("~/bundles/angular")
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)*@
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">         
-            <div class="navbar-collapse collapse">
-                <a asp-controller="App" asp-action="Index" class="navbar-brand">My Gift Closet</a>
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a asp-controller="App" asp-action="Index">Home</a></li>
-                    <li><a asp-controller="App" asp-action="About">About</a></li>
-                    <li><a asp-controller="App" asp-action="Contact">Contact</a></li>
-                </ul>
+    <div class="main">
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-collapse collapse">
+                    <a asp-controller="App" asp-action="Index" class="navbar-brand">My Gift Closet</a>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a asp-controller="App" asp-action="Index">Home</a></li>
+                        <li><a asp-controller="App" asp-action="About">About</a></li>
+                        <li><a asp-controller="App" asp-action="Contact">Contact</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        
-        <div class="container bottom-menu-bar">
-            <hr />
-            <div class="row">
-                <div class="col-md-3 bottom-menu-item">
-                    <a asp-controller="App" asp-action="AddGift">
-                        <img src="~/img/present.png" class="center-block img-circle img-responsive" width="75" height="75">
-                        <h4 class="text-center">Add a gift</h4>
-                    </a>
-                </div>
-                <div class="col-md-3 bottom-menu-item">
-                    <a asp-controller="App" asp-action="Gifts">
-                        <img src="~/img/gifts-multiple.jpg" class="center-block img-circle img-responsive" width="75" height="75">
-                        <h4 class="text-center">Check your closet</h4>
-                    </a>
-                </div>
-                <div class="col-md-3 bottom-menu-item">
-                    <a asp-controller="App" asp-action="AddRecipient">
-                        <img src="~/img/person-new.png" class="center-block img-circle img-responsive" width="75" height="75">
-                        <h4 class="text-center">Add a new recipient</h4>
-                    </a>
-                </div>
-                <div class="col-md-3 bottom-menu-item">
-                    <a asp-controller="App" asp-action="Recipients">
-                        <img src="~/img/family.png" class="center-block img-circle img-responsive" width="75" height="75">
-                        <h4 class="text-center">View recipients</h4>
-                    </a>
-                </div>
-            </div>
-            <hr />
+        <div class="container body-content">
+            @RenderBody()
         </div>
     </div>
-        <div id="footer">
-            <div class="navbar navbar-fixed-bottom">
-                <h4 class="text-center text-primary">&copy; @DateTime.Now.Year - My Gift Closet</h4>
+
+   
+        <div class="navbar footer">
+            <div class="container bottom-menu-bar">
+                <hr />
+                <div class="row">
+                    <div class="col-md-3 bottom-menu-item">
+                        <a asp-controller="App" asp-action="AddGift">
+                            <img src="~/img/present.png" class="center-block img-circle img-responsive" width="75" height="75">
+                            <h4 class="text-center">Add a gift</h4>
+                        </a>
+                    </div>
+                    <div class="col-md-3 bottom-menu-item">
+                        <a asp-controller="App" asp-action="Gifts">
+                            <img src="~/img/gifts-multiple.jpg" class="center-block img-circle img-responsive" width="75" height="75">
+                            <h4 class="text-center">Check your closet</h4>
+                        </a>
+                    </div>
+                    <div class="col-md-3 bottom-menu-item">
+                        <a asp-controller="App" asp-action="AddRecipient">
+                            <img src="~/img/person-new.png" class="center-block img-circle img-responsive" width="75" height="75">
+                            <h4 class="text-center">Add a new recipient</h4>
+                        </a>
+                    </div>
+                    <div class="col-md-3 bottom-menu-item">
+                        <a asp-controller="App" asp-action="Recipients">
+                            <img src="~/img/family.png" class="center-block img-circle img-responsive" width="75" height="75">
+                            <h4 class="text-center">View recipients</h4>
+                        </a>
+                    </div>
+                </div>
+                <hr />
             </div>
+            <h4 class="text-center text-primary">&copy; @DateTime.Now.Year - My Gift Closet</h4>
         </div>
     
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>  
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="~/lib/angular/angular.min.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

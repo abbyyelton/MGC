@@ -1,71 +1,64 @@
-﻿@model MGC.ViewModels.GiftViewModel
-@{
+﻿@{
     ViewBag.Title = "Add Gift";
 }
 @section scripts {
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/lib/angular/angular.min.js"></script>
+    <script src="~/lib/angular-route/angular-route.min.js"></script>
+    <script src="~/js/app-gifts.js"></script>
+    <script src="~/js/addGiftController.js"></script>
 }
-<div class="row">
-    <div class="col-md-6 col-md-offset-3">
-        <h2>Add a gift</h2>
-        <form class="form-horizontal" role="form" method="post" novalidate>
-            <span asp-validation-summary="ModelOnly"></span>
-            <div class="form-group">
-                <label asp-for="Name" class="col-sm-2 control-label">Name</label>
-                <div class="col-sm-10">
-                    <input asp-for="Name" type="text" class="form-control" id="title" placeholder="Title or Description" ng-model="title">
+
+    <div class="container" ng-app="app-gifts">
+        <div ng-controller="addGiftController as vm">
+            <div class="text-danger" ng-show="vm.errorMessage">{{vm.errorMessage}}</div>
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <h2>Add a gift</h2>
+                    <form class="form-horizontal" name="newGiftForm" novalidate>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input id="name" type="text" class="form-control" name="name" ng-model="vm.newGift.name" required>
+                            <span ng-show="newGiftForm.name.$error.required" class="text-warning">Name is required.</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="recipient">Recipient</label>
+                            <select id="recipient" name="recipient" class="form-control" ng-model="vm.newGift.recipientName">
+                                <option ng-repeat="recipient in vm.recipients" value="{{recipient.name}}">{{recipient.name}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="holiday">Holiday</label>
+                            <select id="holiday" name="holiday" class="form-control" ng-model="vm.newGift.holidayName">
+                                <option ng-repeat="holiday in vm.holidays" value="{{holiday.name}}">{{holiday.name}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="price">Price</label>
+                            <input id="price" type="text" class="form-control" name="price" ng-model="vm.newGift.price">
+                            <span ng-show="newGiftForm.price.$error.number" class="text-warning">Price must be a number.</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="storeLink">Store/Link</label>
+                            <input id="storeLink" type="text" class="form-control" name="storeLink" ng-model="vm.newGift.storeLink">
+                        </div>
+                        <div class="form-group">
+                            <label for="purchased" >Purchased</label>
+                            <label for="purchased" class="radio-inline"><input type="radio" name="purchased" id="purchased" ng-model="vm.newGift.purchased" ng-value="true">Yes</label>
+                            <label for="purchased" class="radio-inline"><input type="radio" name="purchased" id="purchased" ng-model="vm.newGift.purchased" ng-value="false">No</label>
+                        </div>
+                        <div class="form-group">
+                            <label for="wrapped">Wrapped</label>
+                            <label for="wrapped" class="radio-inline"><input type="radio" name="wrapped" id="wrapped" ng-model="vm.newGift.wrapped" ng-value="true">Yes</label>
+                            <label for="wrapped" class="radio-inline"><input type="radio" name="wrapped" id="wrapped" ng-model="vm.newGift.wrapped" ng-value="false">No</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Submit" class="btn btn-success" ng-click="vm.addGift()" ng-disabled="newGiftForm.$invalid" />
+                            <input type="submit" value="Submit and Add More" class="btn btn-success" ng-click="vm.addGift()" ng-disabled="newGiftForm.$invalid" />
+                        </div>
+                    </form>
                 </div>
-                <span asp-validation-for="Name"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="StoreLink" class="col-sm-2 control-label">Store/Link</label>
-                <div class="col-sm-10">
-                    <input asp-for="StoreLink" type="text" class="form-control" id="storeLink" placeholder="Store or URL" ng-model="storeLink">
-                </div>
-                <span asp-validation-for="StoreLink"></span>
-            </div>
-            @*<div class="form-group">
-                <label for="inputRecipient" class="col-sm-2 control-label">Recipient</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="recipient" placeholder="Who the gift is for" ng-model="recipient">
-                </div>
-                 <span asp-validation-for="Recipient"></span>
-            </div>
-            <div class="form-group">
-                <label for="inputHoliday" class="col-sm-2 control-label">Holiday</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="holiday" placeholder="Christmas, Birthday, etc." ng-model="holiday">
-                </div>
-                                                 <span asp-validation-for="Holiday"></span>
-            </div>*@
-            <div class="form-group">
-                <label asp-for="Price" class="col-sm-2 control-label">Price</label>
-                <div class="col-sm-10">
-                    <input asp-for="Price" type="text" class="form-control" id="price" placeholder="cost" ng-model="price">
-                </div>
-                <span asp-validation-for="Price"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Purchased" class="col-sm-2 control-label">Purchased</label>
-                <div class="col-sm-10">
-                    <label asp-for="Purchased" class="radio-inline"><input type="radio" name="purchased" ng-model="purchased" ng-value="true">Yes</label>
-                    <label asp-for="Purchased" class="radio-inline"><input type="radio" name="purchased" ng-model="purchased" ng-value="false">No</label>
-                </div>
-                <span asp-validation-for="Purchased"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Wrapped" class="col-sm-2 control-label">Wrapped</label>
-                <div class="col-sm-10">
-                    <label asp-for="Wrapped" class="radio-inline"><input type="radio" name="wrapped" ng-model="wrapped" ng-value="true">Yes</label>
-                    <label asp-for="Wrapped" class="radio-inline"><input type="radio" name="wrapped" ng-model="wrapped" ng-value="false">No</label>
-                </div>
-                <span asp-validation-for="Wrapped"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Add Gift" class="btn btn-success" />
-            </div>
-        </form>
-      </div>
-</div>
-        
+        </div>
+    </div>

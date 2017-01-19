@@ -42,22 +42,28 @@ namespace MGC.Controllers.Api
         }
 
         [HttpPost("")]
-        public async Task<IActionResult> Post([FromBody]GiftViewModel theGift)
+        public async Task<IActionResult> Post([FromBody]IEnumerable<GiftViewModel> theGifts)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    var newGift = Mapper.Map<Gift>(theGift);
-                    newGift.Holiday = _repository.GetHolidayByName(theGift.HolidayName);
-                    newGift.Recipient = _repository.GetRecipientByName(theGift.RecipientName);
-                    newGift.GiftUser = _repository.GetGiftUserByName(User.Identity.Name);
-                    
-                    _repository.AddGift(newGift);
+                    var newGift = new Gift();
+                    List<Gift> returnGifts = new List<Gift>();
+                    foreach (var gift in theGifts)
+                    {
+                        newGift = Mapper.Map<Gift>(gift);
+                        newGift.Holiday = _repository.GetHolidayByName(gift.HolidayName);
+                        newGift.Recipient = _repository.GetRecipientByName(gift.RecipientName);
+                        newGift.GiftUser = _repository.GetGiftUserByName(User.Identity.Name);
+
+                        _repository.AddGift(newGift);
+                        returnGifts.Add(newGift);
+                    }
 
                     if (await _repository.SaveChangesAsync())
                     {
-                        return Created($"api/gifts/{theGift.Name}", Mapper.Map<GiftViewModel>(newGift));
+                        return Created($"api/gifts/", Mapper.Map<IEnumerable<GiftViewModel>>(returnGifts));
                     }
                     else
                     {
